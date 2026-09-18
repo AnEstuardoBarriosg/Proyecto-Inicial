@@ -90,6 +90,20 @@ El usuario selecciona una tecnología de comunicación, un material, una distanc
 
 Luego clasifica el estado de la señal como funcional, débil o bloqueada.
 
+## Plano 2D conceptual
+
+El simulador incluye una representación visual sencilla de una señal externa intentando ingresar a un área controlada.
+
+El plano muestra:
+
+- Antena externa.
+- Línea de propagación de la señal.
+- Obstáculo físico seleccionado.
+- Área interna del centro penitenciario.
+- Estado visual de la señal: funcional, débil o bloqueada.
+
+Esta representación no corresponde a un plano arquitectónico real. Su objetivo es apoyar la comprensión del comportamiento de la señal frente a distintos materiales, frecuencias y grosores.
+
 ## Despliegue público
 
 El proyecto se encuentra publicado mediante GitHub Pages.
@@ -114,6 +128,7 @@ Primera versión funcional del simulador web con:
 - Ajuste de potencia inicial.
 - Cálculo estimado de pérdida de señal.
 - Clasificación del estado de la señal.
+- Plano 2D conceptual de propagación de señal.
 
 ## Autor
 
