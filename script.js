@@ -17,6 +17,19 @@ const totalLossResult = document.getElementById("totalLossResult");
 const finalPowerResult = document.getElementById("finalPowerResult");
 const interpretation = document.getElementById("interpretation");
 
+const signalLine = document.getElementById("signalLine");
+const wallVisual = document.getElementById("wallVisual");
+const wallLabel = document.getElementById("wallLabel");
+const visualBadge = document.getElementById("visualBadge");
+const visualExplanation = document.getElementById("visualExplanation");
+
+const materialNames = {
+  "8": { name: "Ladrillo", className: "ladrillo" },
+  "18": { name: "Concreto reforzado", className: "concreto" },
+  "35": { name: "Malla metálica", className: "malla" },
+  "60": { name: "Jaula de Faraday", className: "faraday" }
+};
+
 function calculate() {
   const frequencyMHz = Number(technology.value);
   const materialLossPerMeter = Number(material.value);
@@ -44,20 +57,53 @@ function calculate() {
   totalLossResult.textContent = `${totalLoss.toFixed(2)} dB`;
   finalPowerResult.textContent = `${finalPower.toFixed(2)} dBm`;
 
+  updateStatus(finalPower);
+  updateVisual(materialLossPerMeter, thicknessMeters, finalPower);
+}
+
+function updateStatus(finalPower) {
   statusBox.className = "status";
+  signalLine.className = "signal-line";
+  visualBadge.className = "badge";
 
   if (finalPower > -80) {
     statusBox.textContent = "Señal funcional";
     statusBox.classList.add("good");
+    signalLine.classList.add("good");
+    visualBadge.classList.add("good");
+    visualBadge.textContent = "Señal funcional";
     interpretation.textContent = "La señal aún conserva suficiente potencia para mantenerse operativa.";
   } else if (finalPower > -95) {
     statusBox.textContent = "Señal débil";
     statusBox.classList.add("weak");
+    signalLine.classList.add("weak");
+    visualBadge.classList.add("weak");
+    visualBadge.textContent = "Señal débil";
     interpretation.textContent = "La señal queda degradada y podría presentar fallos o inestabilidad.";
   } else {
     statusBox.textContent = "Señal bloqueada o inutilizable";
     statusBox.classList.add("blocked");
+    signalLine.classList.add("blocked");
+    visualBadge.classList.add("blocked");
+    visualBadge.textContent = "Señal bloqueada";
     interpretation.textContent = "La señal queda por debajo del umbral de referencia de -95 dBm.";
+  }
+}
+
+function updateVisual(materialLossPerMeter, thicknessMeters, finalPower) {
+  const selectedMaterial = materialNames[String(materialLossPerMeter)];
+  const wallWidth = Math.max(28, Math.min(95, 28 + thicknessMeters * 13));
+
+  wallVisual.className = `wall ${selectedMaterial.className}`;
+  wallVisual.style.width = `${wallWidth}px`;
+  wallLabel.textContent = `${selectedMaterial.name} (${thicknessMeters.toFixed(1)} m)`;
+
+  if (finalPower > -80) {
+    visualExplanation.textContent = "La señal logra atravesar el obstáculo y todavía conserva potencia suficiente dentro del área interna.";
+  } else if (finalPower > -95) {
+    visualExplanation.textContent = "La señal atraviesa el obstáculo, pero llega debilitada al área interna.";
+  } else {
+    visualExplanation.textContent = "La señal queda por debajo del umbral de comunicación después de atravesar el obstáculo.";
   }
 }
 

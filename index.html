@@ -68,6 +68,54 @@
       </div>
     </section>
 
+    <section class="card visual-card">
+      <div class="section-title">
+        <div>
+          <h2>Plano 2D conceptual</h2>
+          <p>
+            Representación visual de una señal externa atravesando un obstáculo físico antes de ingresar al área controlada.
+          </p>
+        </div>
+        <span class="badge" id="visualBadge">Estado de señal</span>
+      </div>
+
+      <div class="prison-map" aria-label="Plano conceptual de propagación de señal">
+        <div class="antenna-zone">
+          <div class="antenna">
+            <span class="antenna-top"></span>
+            <span class="antenna-body"></span>
+            <span class="antenna-base"></span>
+          </div>
+          <p>Antena externa</p>
+        </div>
+
+        <div class="signal-zone">
+          <div class="signal-line" id="signalLine"></div>
+          <div class="signal-wave wave-one"></div>
+          <div class="signal-wave wave-two"></div>
+          <div class="signal-wave wave-three"></div>
+        </div>
+
+        <div class="wall-zone">
+          <div class="wall" id="wallVisual"></div>
+          <p id="wallLabel">Obstáculo físico</p>
+        </div>
+
+        <div class="facility-zone">
+          <div class="facility">
+            <div class="window"></div>
+            <div class="window"></div>
+            <div class="door"></div>
+          </div>
+          <p>Área interna</p>
+        </div>
+      </div>
+
+      <p class="visual-note" id="visualExplanation">
+        El grosor visual del muro y el color de la señal cambian según los parámetros seleccionados.
+      </p>
+    </section>
+
     <section class="card explanation">
       <h2>Modelo utilizado</h2>
       <p>

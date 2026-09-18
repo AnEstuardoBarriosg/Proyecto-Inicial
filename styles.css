@@ -146,8 +146,263 @@ input[type="range"] {
   margin-bottom: 0;
 }
 
+.visual-card,
 .explanation {
   margin-top: 22px;
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.section-title p {
+  margin: 6px 0 0;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 150px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: var(--card-soft);
+  border: 1px solid var(--border);
+  font-weight: bold;
+  text-align: center;
+}
+
+.badge.good {
+  color: var(--ok);
+  border-color: var(--ok);
+}
+
+.badge.weak {
+  color: var(--warn);
+  border-color: var(--warn);
+}
+
+.badge.blocked {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+.prison-map {
+  display: grid;
+  grid-template-columns: 150px 1fr 120px 170px;
+  min-height: 260px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(56, 189, 248, 0.06), transparent),
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.03), rgba(255,255,255,0.03) 1px, transparent 1px, transparent 28px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.03) 1px, transparent 1px, transparent 28px);
+}
+
+.antenna-zone,
+.signal-zone,
+.wall-zone,
+.facility-zone {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.antenna-zone,
+.facility-zone {
+  flex-direction: column;
+  gap: 10px;
+}
+
+.antenna-zone p,
+.wall-zone p,
+.facility-zone p,
+.visual-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  text-align: center;
+}
+
+.antenna {
+  position: relative;
+  width: 70px;
+  height: 130px;
+}
+
+.antenna-top {
+  position: absolute;
+  top: 0;
+  left: 26px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.antenna-body {
+  position: absolute;
+  top: 18px;
+  left: 33px;
+  width: 4px;
+  height: 88px;
+  background: var(--text);
+}
+
+.antenna-base {
+  position: absolute;
+  bottom: 0;
+  left: 8px;
+  width: 54px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--muted);
+}
+
+.signal-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--ok);
+  opacity: 0.95;
+}
+
+.signal-line.weak {
+  background: var(--warn);
+  opacity: 0.75;
+}
+
+.signal-line.blocked {
+  background: linear-gradient(90deg, var(--danger) 0 55%, transparent 55% 100%);
+  opacity: 0.85;
+}
+
+.signal-wave {
+  position: absolute;
+  left: 14%;
+  width: 58px;
+  height: 58px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  opacity: 0.4;
+}
+
+.wave-one {
+  transform: scale(0.8);
+}
+
+.wave-two {
+  transform: scale(1.35);
+  opacity: 0.26;
+}
+
+.wave-three {
+  transform: scale(1.9);
+  opacity: 0.16;
+}
+
+.wall-zone {
+  flex-direction: column;
+  gap: 10px;
+  border-left: 1px dashed var(--border);
+  border-right: 1px dashed var(--border);
+}
+
+.wall {
+  width: 44px;
+  min-height: 130px;
+  border-radius: 10px;
+  background: repeating-linear-gradient(45deg, #64748b, #64748b 8px, #475569 8px, #475569 16px);
+  border: 2px solid #94a3b8;
+  transition: width 0.2s ease;
+}
+
+.wall.ladrillo {
+  background: repeating-linear-gradient(0deg, #b45309, #b45309 12px, #78350f 12px, #78350f 15px);
+  border-color: #f59e0b;
+}
+
+.wall.concreto {
+  background: repeating-linear-gradient(45deg, #64748b, #64748b 8px, #475569 8px, #475569 16px);
+  border-color: #94a3b8;
+}
+
+.wall.malla {
+  background:
+    repeating-linear-gradient(45deg, rgba(226,232,240,0.8) 0 2px, transparent 2px 12px),
+    repeating-linear-gradient(-45deg, rgba(226,232,240,0.8) 0 2px, transparent 2px 12px),
+    #1e293b;
+  border-color: #cbd5e1;
+}
+
+.wall.faraday {
+  background:
+    repeating-linear-gradient(90deg, rgba(56,189,248,0.95) 0 3px, transparent 3px 12px),
+    repeating-linear-gradient(0deg, rgba(56,189,248,0.55) 0 3px, transparent 3px 12px),
+    #0f172a;
+  border-color: var(--accent);
+}
+
+.facility {
+  position: relative;
+  width: 110px;
+  height: 105px;
+  border: 3px solid #94a3b8;
+  border-radius: 8px;
+  background: rgba(148, 163, 184, 0.12);
+}
+
+.facility::before {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  top: -28px;
+  height: 28px;
+  background: #475569;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.window {
+  position: absolute;
+  top: 24px;
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  background: rgba(56, 189, 248, 0.35);
+  border: 1px solid var(--accent);
+}
+
+.window:nth-child(1) {
+  left: 18px;
+}
+
+.window:nth-child(2) {
+  right: 18px;
+}
+
+.door {
+  position: absolute;
+  bottom: 0;
+  left: 43px;
+  width: 24px;
+  height: 38px;
+  background: #334155;
+  border: 1px solid #94a3b8;
+  border-bottom: none;
+  border-radius: 5px 5px 0 0;
+}
+
+.visual-note {
+  margin-top: 14px;
 }
 
 .formula {
@@ -160,12 +415,59 @@ input[type="range"] {
   margin: 18px 0;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .grid {
     grid-template-columns: 1fr;
   }
 
+  .prison-map {
+    grid-template-columns: 1fr;
+  }
+
+  .antenna-zone,
+  .signal-zone,
+  .wall-zone,
+  .facility-zone {
+    min-height: 160px;
+  }
+
+  .signal-line {
+    left: 50%;
+    right: auto;
+    width: 6px;
+    height: 100%;
+  }
+
+  .signal-line.blocked {
+    background: linear-gradient(180deg, var(--danger) 0 55%, transparent 55% 100%);
+  }
+
+  .signal-wave {
+    left: calc(50% - 29px);
+  }
+
+  .wall-zone {
+    border-left: none;
+    border-right: none;
+    border-top: 1px dashed var(--border);
+    border-bottom: 1px dashed var(--border);
+  }
+
+  .wall {
+    min-height: 60px;
+  }
+}
+
+@media (max-width: 800px) {
   .metrics {
     grid-template-columns: 1fr;
+  }
+
+  .section-title {
+    flex-direction: column;
+  }
+
+  .badge {
+    width: 100%;
   }
 }
