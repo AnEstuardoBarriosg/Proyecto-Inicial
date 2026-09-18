@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Control Conceptual de Señales No Autorizadas</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <section class="hero">
+      <p class="tag">Simulador académico de atenuación pasiva</p>
+      <h1>Control Conceptual de Señales No Autorizadas en Centros Penitenciarios</h1>
+      <p>
+        Este simulador muestra cómo una señal pierde potencia al propagarse y atravesar materiales físicos.
+        El enfoque es estrictamente pasivo: no se emiten señales ni se utilizan inhibidores activos.
+      </p>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>Parámetros de simulación</h2>
+
+        <label for="technology">Tecnología</label>
+        <select id="technology">
+          <option value="850">2G - 850 MHz</option>
+          <option value="1900">3G - 1900 MHz</option>
+          <option value="2100">4G - 2100 MHz</option>
+          <option value="3500">5G Sub-6 - 3.5 GHz</option>
+          <option value="28000">5G mmWave - 28 GHz</option>
+        </select>
+
+        <label for="material">Material</label>
+        <select id="material">
+          <option value="8">Ladrillo - atenuación media</option>
+          <option value="18">Concreto reforzado - atenuación alta</option>
+          <option value="35">Malla metálica - atenuación muy alta</option>
+          <option value="60">Jaula de Faraday - aislamiento superior</option>
+        </select>
+
+        <label for="distance">Distancia de propagación: <span id="distanceValue">30</span> m</label>
+        <input type="range" id="distance" min="1" max="200" value="30" />
+
+        <label for="thickness">Grosor del obstáculo: <span id="thicknessValue">1.0</span> m</label>
+        <input type="range" id="thickness" min="0" max="5" step="0.1" value="1" />
+
+        <label for="txPower">Potencia inicial: <span id="txPowerValue">30</span> dBm</label>
+        <input type="range" id="txPower" min="0" max="43" value="30" />
+      </div>
+
+      <div class="card result-card">
+        <h2>Resultado estimado</h2>
+
+        <div class="status" id="status">Calculando...</div>
+
+        <div class="metrics">
+          <div><span>Frecuencia</span><strong id="frequencyResult">850 MHz</strong></div>
+          <div><span>Longitud de onda</span><strong id="wavelengthResult">0.35 m</strong></div>
+          <div><span>FSPL</span><strong id="fsplResult">0 dB</strong></div>
+          <div><span>Pérdida por material</span><strong id="materialLossResult">0 dB</strong></div>
+          <div><span>Pérdida total</span><strong id="totalLossResult">0 dB</strong></div>
+          <div><span>Potencia final</span><strong id="finalPowerResult">0 dBm</strong></div>
+        </div>
+
+        <p class="note" id="interpretation">
+          La señal será clasificada según su potencia final estimada.
+        </p>
+      </div>
+    </section>
+
+    <section class="card explanation">
+      <h2>Modelo utilizado</h2>
+      <p>
+        El cálculo usa una estimación conceptual basada en pérdida por espacio libre y atenuación por material.
+      </p>
+
+      <div class="formula">
+        P<sub>final</sub> = P<sub>inicial</sub> - FSPL - A<sub>material</sub>
+      </div>
+
+      <p>
+        Si la potencia final queda por debajo de -95 dBm, el simulador considera que la señal queda degradada
+        o bloqueada para efectos de comunicación.
+      </p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
