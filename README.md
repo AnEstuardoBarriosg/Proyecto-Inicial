@@ -95,7 +95,7 @@ Luego clasifica el estado de la señal como funcional, débil o bloqueada.
 El proyecto se encuentra publicado mediante GitHub Pages.
 
 Enlace del simulador:  
-https://anesturadobarriosg.github.io/Proyecto-Inicial/
+https://anestuardobarriosg.github.io/Proyecto-Inicial/
 
 ## Restricción legal y ética
 
